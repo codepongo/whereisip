@@ -47,7 +47,7 @@ def createDB(file):
     db.close()
 
 def nation(ip):
-    file = 'ip2nation.db'
+    file = os.path.join(os.path.dirname(__file__), 'ip2nation.db')
     db = sqlite3.connect(file)
     if 0 == os.path.getsize(file):
         loading(createDB,(file,))
@@ -64,7 +64,7 @@ WHERE
     c.code = i.country
 ORDER BY
     i.ip DESC
-LIMIT 0,1""" % struct.unpack("!l", socket.inet_aton(ip)))
+LIMIT 0,1""" % struct.unpack("!L", socket.inet_aton(ip)))
     c = db.cursor()
     c.execute(sql)
     result = c.fetchall()

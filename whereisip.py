@@ -19,7 +19,11 @@ USAGE:
         c = unicode(c, 'utf-8').encode('gb2312')
         a = unicode(a, 'utf-8').encode('gb2312')
     print '%s %s/%s' % (sys.argv[1], c, a)
-    print str(ip2nation.nation(sys.argv[1])[0][0])
+    nation = ip2nation.nation(sys.argv[1])
+    if len(nation) != 0:
+        print str(ip2nation.nation(sys.argv[1])[0][0])
+    else:
+        print 'unknow'
 
 if __name__ == '__main__':
     main()
